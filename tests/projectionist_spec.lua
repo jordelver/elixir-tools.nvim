@@ -1,10 +1,10 @@
 describe("projectionist", function()
   before_each(function()
     local tmp_dir = [[./tmp/fixtures]]
-    vim.fn.system([[rm -rf ]]..tmp_dir)
-    vim.fn.system([[mkdir -p ]]..tmp_dir)
-    vim.fn.system([[cp -r tests/fixtures/ ]]..tmp_dir)
-    vim.cmd.cd(tmp_dir.."/project_a")
+    vim.fn.system([[rm -rf ]] .. tmp_dir)
+    vim.fn.system([[mkdir -p ]] .. tmp_dir)
+    vim.fn.system([[cp -r tests/fixtures/ ]] .. tmp_dir)
+    vim.cmd.cd(tmp_dir .. "/project_a")
     require("elixir.projectionist").setup()
     vim.cmd.edit("project_a/lib/module.ex")
   end)
@@ -39,7 +39,13 @@ describe("projectionist", function()
 
     assert.are.same(
       vim.fn.readfile("lib/project_a_web/controllers/user_html.ex"),
-      { "defmodule ProjectAWeb.UserHTML do", "  use ProjectAWeb, :html", "", [[  embed_templates "user_html/*"]], "end" }
+      {
+        "defmodule ProjectAWeb.UserHTML do",
+        "  use ProjectAWeb, :html",
+        "",
+        [[  embed_templates "user_html/*"]],
+        "end",
+      }
     )
   end)
 
