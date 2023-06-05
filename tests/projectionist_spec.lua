@@ -37,16 +37,13 @@ describe("projectionist", function()
     vim.cmd.Ehtml("project_a_web/user")
     vim.cmd.write()
 
-    assert.are.same(
-      vim.fn.readfile("lib/project_a_web/controllers/user_html.ex"),
-      {
-        "defmodule ProjectAWeb.UserHTML do",
-        "  use ProjectAWeb, :html",
-        "",
-        [[  embed_templates "user_html/*"]],
-        "end",
-      }
-    )
+    assert.are.same(vim.fn.readfile("lib/project_a_web/controllers/user_html.ex"), {
+      "defmodule ProjectAWeb.UserHTML do",
+      "  use ProjectAWeb, :html",
+      "",
+      [[  embed_templates "user_html/*"]],
+      "end",
+    })
   end)
 
   it("Ecomponent", function()
